@@ -1,0 +1,5 @@
+Django>=3.0,<4.0
+psycopg2>=2.8
+pipreqs>=0.4.11
+django-ckeditor>=6.2.0
+Pillow>=8.4.0

@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Eliminar página{% endblock %}
+
+{% block content %}
+
+  {% include 'pages/includes/pages_menu.html'%} {# Incluye el menú de la página #}
+
+  <main role="main">
+    <div class="container">
+      <div class="row mt-3">
+        <div class="col-md-9 mx-auto">
+          <div>
+
+            <form method="post">
+              {% csrf_token %}
+              <p>Estas seguro de eliminar la página <b>"{{ object }}"</b>?</p>
+
+              <div class="text-center">
+                <input type="submit" class="btn btn-primary btn-block" value="Si, borrar la página" />
+              </div>
+              
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

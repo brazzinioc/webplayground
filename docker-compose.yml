@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  wplay-db:
+    image: postgres:13
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - db-wplay:/var/lib/postgresql/data
+    networks:
+      - wplay-net
+
+  wplay-web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./src/:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - wplay-db
+    networks:
+      - wplay-net
+
+networks:
+  wplay-net:
+    driver: bridge
+
+volumes:
+  db-wplay:
